@@ -104,6 +104,9 @@ export class TweetScheduler {
       if (reservedKey) {
         if (storedData[dateKey][reservedKey]) {
           delete storedData[dateKey][reservedKey];
+          if (0 === Object.keys(storedData[dateKey]).length) {
+            delete storedData[dateKey];
+          }
           hasMessage = true;
         } else {
           hasMessage = false;
