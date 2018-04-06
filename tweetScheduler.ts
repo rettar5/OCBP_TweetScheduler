@@ -17,10 +17,12 @@ export class TweetScheduler {
     if (storedData && storedData[dateKey]) {
       for (const reservedNumber of Object.keys(storedData[dateKey])) {
         const tweets = new OdnTweets(this.accountData);
-        tweets.text = storedData[dateKey][reservedNumber].message;
+        tweets.text = storedData[dateKey][reservedNumber];
         tweets.postTweet((isSuccess, error, tweetData, response) => {
           if (isSuccess) {
             TweetScheduler.deleteSchedule(this.accountData.userId, this.nowDate, parseInt(reservedNumber));
+          } else {
+            Log.e("error: ", error);
           }
         });
       }
