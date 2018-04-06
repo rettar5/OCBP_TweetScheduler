@@ -126,10 +126,10 @@ export class TweetScheduler {
    */
   static getScheduleKey(date: Date): string {
     const year = date.getFullYear().toString();
-    const month = (date.getMonth() + 1).toString();
-    const day = date.getDate().toString();
-    const hour = date.getHours().toString();
-    const minute = date.getMinutes().toString();
+    const month = ("00" + date.getMonth() + 1).slice(-2);
+    const day = ("00" + date.getDate()).slice(-2);
+    const hour = ("00" + date.getHours()).slice(-2);
+    const minute = ("00" + date.getMinutes()).slice(-2);
 
     return year + month + day + "-" + hour + minute;
   }
