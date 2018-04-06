@@ -77,7 +77,7 @@ export class TweetScheduler {
     const dateKey = TweetScheduler.getScheduleKey(date);
     const reservedKey = (() => {
       const reservedKeyList = storedData && storedData[dateKey] ? Object.keys(storedData[dateKey]) : null;
-      return reservedKeyList ? Math.max.apply(null, reservedKeyList) + 1 : 1;
+      return reservedKeyList && 0 < reservedKeyList.length ? Math.max.apply(null, reservedKeyList) + 1 : 1;
     })();
     if (1 === reservedKey) {
       storedData[dateKey] = {};
