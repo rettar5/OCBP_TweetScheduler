@@ -1,4 +1,4 @@
-import { Log } from "../../../odnUtils";
+import { Log, OdnUtils } from "../../../odnUtils";
 import { AccountConfigs, AccountData } from "../../../configs/accountConfigs";
 import { OdnPlugins } from "../../../odnPlugins";
 import { OdnTweets } from "../../../odnTweets";
@@ -127,13 +127,7 @@ export class TweetScheduler {
    * @returns {string}
    */
   static getScheduleKey(date: Date): string {
-    const year = date.getFullYear().toString();
-    const month = ("00" + (date.getMonth() + 1)).slice(-2);
-    const day = ("00" + date.getDate()).slice(-2);
-    const hour = ("00" + date.getHours()).slice(-2);
-    const minute = ("00" + date.getMinutes()).slice(-2);
-
-    return year + month + day + "-" + hour + minute;
+    return OdnUtils.convDateToString(date, "yyyymmdd-HHMM");
   }
 }
 
